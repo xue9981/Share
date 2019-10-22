@@ -1,0 +1,17 @@
+\bibliographystyle{jplain}
+\begin{thebibliography}{3}
+
+\bibitem{text_book}
+  \newblock {杉山　将}.
+  \newblock {イラストで学ぶ機械学習}.
+  \newblock {講談社},
+  \newblock {2015}
+  
+\bibitem{about_svm2}
+  \newblock {サポートベクターマシン（SVM）}.
+  \newblock {\url{http://www.sist.ac.jp/~kanakubo/research/neuro/supportvectormachine.html}}
+
+\bibitem{about_svm3}
+  \newblock{SVM支持向量机入门及数学原理}.
+  \newblock{\url{https://blog.csdn.net/qq_35992440/article/details/80987664}}
+\end{thebibliography}
