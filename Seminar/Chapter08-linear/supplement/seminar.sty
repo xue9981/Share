@@ -1,0 +1,62 @@
+%%
+%% This is file `seminar.sty' revised from `seminar.cls' by Atsuhito Shigiya
+%% This is file `seminar.cls' revised from `jarticle.cls' by Hiroshi TSUTSUI
+%%
+\makeatletter
+\newif\ifintro
+\def\materialstatus#1{%
+  \gdef\@materialstatus{#1}
+  % 文献紹介かどうかをチェック
+  \def\intro{文献紹介}
+  \ifx\@materialstatus\intro
+     \introtrue
+     % 文献紹介の時は英語表記にする
+     \renewcommand{\contentsname}{Contents}
+     \renewcommand{\listfigurename}{List of Figures}
+     \renewcommand{\listtablename}{List of Tables}
+     \renewcommand{\refname}{References}
+     \renewcommand{\indexname}{Index}
+     \renewcommand{\figurename}{Figure}
+     \renewcommand{\tablename}{Table}
+     \renewcommand{\appendixname}{Appendix}
+     \renewcommand{\abstractname}{Abstract}
+  \fi
+}
+\def\semiauthor#1{\gdef\@semiauthor{#1}}
+\def\source#1{\gdef\@source{#1}}
+\global\let\@materialstatus\@empty % initial value = empty
+\global\let\@semiauthor\@empty % initial value = empty
+\global\let\@presentationdate\@empty % initial value = empty
+\global\let\@source\@empty % initial value = empty
+
+% seminarheadgins定義
+\def\ps@seminarheadings{%
+  \let\ps@jpl@in\ps@seminarheadings% 目次,索引,sectionでもseminarheadgins
+  \def\@evenhead{\@seminarhead}%
+  \def\@oddhead{\@seminarhead}%
+  \def\@evenfoot{\reset@font\hfil\thepage\hfil}%
+  \def\@oddfoot{\reset@font\hfil\thepage\hfil}%
+  \let\@mkboth\@gobbletwo
+  \let\sectionmark\@gobble
+  \let\subsectionmark\@gobble
+}
+\def\@seminarhead{%
+  {\small Seminar2 : \@materialstatus}
+  \hfil{\small \@presentationdate \@semiauthor}
+}
+% maketitleでauthor, date がリセットされてしまうので、途中でスヌープ
+\let\@originalmaketitle\maketitle
+\def\maketitle{
+  \global\let\@presentationdate %\@date
+  \global\let\@date\@empty % headerで日付は出力するので、titleでは出さない
+  \global\let\@author\@empty % headerで著者は出力するので、titleでは出さない
+  \ifintro
+    \global\let\@date\@source % 日付の代わりに出典を出力
+  \fi
+  \@originalmaketitle
+  \vspace{-2cm}
+}
+\makeatother
+
+% Headerを研究会用に設定
+\pagestyle{seminarheadings}

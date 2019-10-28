@@ -1,0 +1,29 @@
+\section{ラグランジュ関数における$\bm{w},\xi,\gamma$の消去}
+\begin{eqnarray*}
+  \bm{w} = \sum_{i=1}^{n}\alpha_iy_i\bm{x_i},\
+  \bm{\alpha}+\bm{\beta}=\bm{C}
+\end{eqnarray*}
+により、
+\begin{eqnarray}
+  \begin{flushleft}
+    {\it{L}}\bm{w},\gamma,\xi,\alpha,\beta=\
+    \dfrac{1}{2}(\sum_{i=1}^{n}\alpha_iy_i\bm{x_i})^{\mathrm{T}}\
+    (\sum_{j=1}^{n}\alpha_jy_j\bm{x_j})+\sum_{i=1}^{n}(\alpha_i+\beta_i)\xi\
+    -\sum_{i=1}^{n}\alpha{((\sum_{j=1}^{n}\alpha_jy_j\bm{x_j})^{\mathrm{T}}\
+      \bm{x_i}+\gamma)y_i-1+\xi_i}-\sum_{i=1}^{n}\beta_i\xi_i\\
+    =
+    \dfrac{1}{2}(\sum_{i,j=1}^{n}\alpha_iy_i\alpha_jyj\bm{x_i}^{\mathrm{T}}\
+    \bm{x_j})+\sum_{i=1}^{n}(\alpha_i+\beta_i)\xi_i-\sum_{i=1}\alpha_i\
+    \sum_{j=1}^{n}\alpha_jy_j\bm{x_j}^{\mathrm{T}}\bm{x_i}y_i+\gamma\alpha_iy_i\
+    -\alpha_i+\alpha_i\xi_i-\sum_{i=1}^{n}\beta_i\xi_i\\
+    =
+    \dfrac{1}{2}(\sum_{i,j=1}^{n}\alpha_iy_i\alpha_jyj\bm{x_i}^{\mathrm{T}}\
+    \bm{x_j})+\sum_{i=1}^{n}(\alpha_i+\beta_i)\xi_i-\sum_{i,j=1}\alpha_i\
+    \alpha_jy_j\bm{x_i}^{\mathrm{T}}\bm{x_j}y_i+\gamma\alpha_iy_i\
+    -\alpha_i+\alpha_i\xi_i-\sum_{i=1}^{n}\beta_i\xi_i\\
+    =\sum_{i=1}^{n}\alpha_i-\dfrac{1}{2}\sum{i,j=1}^{n}\alpha_i\alpha_j\
+    y_iy_j\bm{x_i}^{\mathrm{T}}\bm{x_j}
+  \end{flushleft}
+\end{eqnarray}
+
+

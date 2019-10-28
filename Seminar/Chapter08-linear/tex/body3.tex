@@ -26,7 +26,7 @@ $\min_{\bm{w}, \gamma, \xi}\max_{\alpha, \beta}{\it{L}}(\bm{w}, \gamma, \bm{\xi}
   \begin{split}
     \hat{\gamma} = \frac{1}{y_i} - \hat{\bm{w}}^{\mathrm{T}}\bm{x_i} \\
     $= y_i - \hat{\bm{w}}^{\mathrm{T}}\bm{x_i} \\
-    $= y_i - (\sum_{j=1}^{n}\hat{\alpha_j}y_j\bm{x_j})^{\mathrm{T}}\bm{x_i} \\
+    $= y_i - \sum_{j=1}^{n}\hat{\alpha_j}y_j\bm{x_j}\bm{x_i} \\
     $= y_i - \sum_{j=1}^{n}\hat{\alpha_j}y_j\bm{x_i}^{\mathrm{T}}\bm{x_j}
   \end{split}
 \end{eqnarray}
