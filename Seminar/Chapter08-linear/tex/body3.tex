@@ -9,10 +9,13 @@ $\min_{\bm{w}, \gamma, \xi}\max_{\alpha, \beta}{\it{L}}(\bm{w}, \gamma, \bm{\xi}
 \end{eqnarray}
 これに$\bm{\alpha} + \bm{\beta} = \bm{C}$を代入すると、以下の結果が得られる。
 \begin{eqnarray}
-  \alpha_i = 0 \Longleftrightarrow m_i > 1 \\
+  \alpha_i = 0 \Longrightarrow m_i > 1 \\
   \label{margin}
-  0 < \alpha_i < C \Longleftrightarrow m_i = 1 \\
-  \alpha_i = C \Longleftrightarrow m_i < 1 
+  0 < \alpha_i < C \Longrightarrow m_i = 1 \\
+  \alpha_i = C \Longrightarrow m_i < 1 \\
+  m_i > 1 \Longrightarrow \alpha_i = 0 \\
+  m_i = 1 \Longrightarrow 0 \le \alpha_i \le C \\
+  m_i < 1 \Longrightarrow \alpha_i = C
 \end{eqnarray}
 
 \begin{figure}[h]
@@ -25,9 +28,9 @@ $\min_{\bm{w}, \gamma, \xi}\max_{\alpha, \beta}{\it{L}}(\bm{w}, \gamma, \bm{\xi}
 \begin{eqnarray}
   \begin{split}
     \hat{\gamma} = \frac{1}{y_i} - \hat{\bm{w}}^{\mathrm{T}}\bm{x_i} \\
-    $= y_i - \hat{\bm{w}}^{\mathrm{T}}\bm{x_i} \\
-    $= y_i - \sum_{j=1}^{n}\hat{\alpha_j}y_j\bm{x_j}\bm{x_i} \\
-    $= y_i - \sum_{j=1}^{n}\hat{\alpha_j}y_j\bm{x_i}^{\mathrm{T}}\bm{x_j}
+    = y_i - \hat{\bm{w}}^{\mathrm{T}}\bm{x_i} \\
+    = y_i - \sum_{j=1}^{n}\hat{\alpha_j}y_j\bm{x_j}\bm{x_i} \\
+    = y_i - \sum_{j=1}^{n}\hat{\alpha_j}y_j\bm{x_i}^{\mathrm{T}}\bm{x_j}
   \end{split}
 \end{eqnarray}
 となり、切片$\hat{\gamma}$を求めることができる。
