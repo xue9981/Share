@@ -1,0 +1,45 @@
+% packages
+\documentclass[twocolumn]{jarticle}
+\usepackage{seminar}
+\usepackage[dvipdfmx]{graphicx, xcolor}
+\usepackage{tikz}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm} % for Bold Italic Font
+\usepackage{url}
+
+% margin settigs
+\setlength{\oddsidemargin}{1.6cm}
+\setlength{\hoffset}{-1in}
+\setlength{\textheight}{240mm}
+\setlength{\textwidth}{160mm}
+\setlength{\topmargin}{-10.4mm}
+\setlength{\headheight}{10mm}
+\setlength{\headsep}{5mm}
+\setlength{\textheight}{24cm}
+\setlength{\textwidth}{18cm}
+\setlength{\columnsep}{1zw}
+
+%newcommand
+\newcommand{\argmax}{\mathop{\rm arg~max}\limits}
+\newcommand{\argmin}{\mathop{\rm arg~min}\limits}
+
+\materialstatus{線形SVM}
+\title{線形SVM}
+%\semiauthor{}
+%\author{}
+\date{2019/10/22}
+
+
+\begin{document}
+
+\maketitle
+
+\input{tex/intro}
+\input{tex/body1}
+\input{tex/body2}
+\input{tex/body3}
+
+\input{svm.bbl}
+\end{document}
