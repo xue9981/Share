@@ -1,0 +1,57 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import math
+
+# データ数
+n = 200
+a = np.linspace(0, math.pi, int(n / 2))
+
+u_term = np.array([math.cos(i) + 0.5 if j < n / 2 else math.cos(i) \
+                   - 0.5 for i, j in zip(np.tile(a, 2), range(n))]).reshape(n, 1)
+u_noise = np.random.normal(loc=0, scale=1, size=n).reshape(n, 1)
+u = -10 * u_term + u_noise
+
+v_term = np.array([math.sin(i) if j < n / 2 else -math.sin(i) for i, j in \
+                   zip(np.tile(a, 2),range(n))]).reshape(n, 1)
+v_noise = np.random.normal(loc=0, scale=1, size=n).reshape(n, 1)
+v = 10 * v_term + v_noise
+
+x = np.hstack([u, v])
+y = np.zeros((n, 1))
+y[0], y[-1] = 1, -1
+
+# 横方向の要素二乗和を求める
+x2 = np.sum(np.power(x, 2), axis=1).reshape(n, 1)
+hh = 2 * pow(1, 2)
+
+k = np.exp(-(np.tile(x2, (1, n)) + np.tile(x2.T, (n, 1)) - 2 \
+             * np.dot(x, x.T)) / hh)
+w = k
+
+t = np.dot(np.linalg.inv(np.power(k, 2) + 1 * np.identity(n) + \
+                         10 * np.dot(k, np.dot(np.diag(np.sum(w, axis=0)) \
+                                               -w, k))), np.dot(k, y))
+
+m = 100
+X = np.linspace(-20, 20, m).T.reshape(m, 1)
+X2 = np.power(X, 2)
+U = np.exp(-(np.tile(np.power(u, 2), (1, m)) + np.tile(X2.T, (n, 1)) \
+             - 2 * np.dot(u, X.T)) / hh)
+V = np.exp(-(np.tile(np.power(v, 2), (1, m)) + np.tile(X2.T, (n, 1)) \
+             - 2 * np.dot(v, X.T)) / hh)
+
+fig, ax= plt.subplots(1)
+ax.contourf(np.tile(X.T, (m, 1)), np.tile(X, (1, m)), \
+            np.sign(np.dot(V.T, np.multiply(U, np.tile(t, (1, m))))))
+
+xmin, xmax, ymin, ymax = -20, 20, -20, 20
+ax.set_xlim(xmin, xmax)
+ax.set_ylim(ymin, ymax)
+ax.set_title("Laplace Regularzation Least-squares Method")
+
+plt.plot(x[0, 0], x[0, 1], marker="o", color="b", ms=10)
+plt.plot(x[-1, 0], x[-1, 1], marker="x", color="r", ms=10)
+for i in range(n-2):
+    plt.plot(x[i+1, 0], x[i+1, 1], marker="o", color="g", ms=3)
+
+plt.show()
