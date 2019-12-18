@@ -31,6 +31,8 @@ w = k
 t = np.dot(np.linalg.inv(np.power(k, 2) + 1 * np.identity(n) + \
                          10 * np.dot(k, np.dot(np.diag(np.sum(w, axis=0)) \
                                                -w, k))), np.dot(k, y))
+t_2 = t.copy
+t_2[1:-1]=0
 
 m = 100
 X = np.linspace(-20, 20, m).T.reshape(m, 1)
@@ -43,6 +45,9 @@ V = np.exp(-(np.tile(np.power(v, 2), (1, m)) + np.tile(X2.T, (n, 1)) \
 fig, ax= plt.subplots(1)
 ax.contourf(np.tile(X.T, (m, 1)), np.tile(X, (1, m)), \
             np.sign(np.dot(V.T, np.multiply(U, np.tile(t, (1, m))))))
+
+#ax.contourf(np.tile(X.T, (m, 1)), np.tile(X, (1, m)), \
+#            np.sign(np.dot(V.T, np.multiply(U, np.tile(t_2, (1, m))))))
 
 xmin, xmax, ymin, ymax = -20, 20, -20, 20
 ax.set_xlim(xmin, xmax)
