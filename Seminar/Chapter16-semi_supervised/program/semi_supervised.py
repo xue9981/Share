@@ -31,8 +31,8 @@ w = k
 t = np.dot(np.linalg.inv(np.power(k, 2) + 1 * np.identity(n) + \
                          10 * np.dot(k, np.dot(np.diag(np.sum(w, axis=0)) \
                                                -w, k))), np.dot(k, y))
-t_2 = t.copy
-t_2[1:-1]=0
+t_2 = t.copy()
+t_2[1:-1] = 0
 
 m = 100
 X = np.linspace(-20, 20, m).T.reshape(m, 1)
@@ -42,21 +42,31 @@ U = np.exp(-(np.tile(np.power(u, 2), (1, m)) + np.tile(X2.T, (n, 1)) \
 V = np.exp(-(np.tile(np.power(v, 2), (1, m)) + np.tile(X2.T, (n, 1)) \
              - 2 * np.dot(v, X.T)) / hh)
 
-fig, ax= plt.subplots(1)
-ax.contourf(np.tile(X.T, (m, 1)), np.tile(X, (1, m)), \
+fig, ax = plt.subplots(1, 2, figsize=(11, 5))
+
+ax[0].contourf(np.tile(X.T, (m, 1)), np.tile(X, (1, m)), \
             np.sign(np.dot(V.T, np.multiply(U, np.tile(t, (1, m))))))
 
-#ax.contourf(np.tile(X.T, (m, 1)), np.tile(X, (1, m)), \
-#            np.sign(np.dot(V.T, np.multiply(U, np.tile(t_2, (1, m))))))
+ax[1].contourf(np.tile(X.T, (m, 1)), np.tile(X, (1, m)), \
+            np.sign(np.dot(V.T, np.multiply(U, np.tile(t_2, (1, m))))))
 
 xmin, xmax, ymin, ymax = -20, 20, -20, 20
-ax.set_xlim(xmin, xmax)
-ax.set_ylim(ymin, ymax)
-ax.set_title("Laplacian Regularzation Least-squares Method")
+ax[0].set_xlim(xmin, xmax)
+ax[0].set_ylim(ymin, ymax)
 
-plt.plot(x[0, 0], x[0, 1], marker="o", color="b", ms=10)
-plt.plot(x[-1, 0], x[-1, 1], marker="x", color="r", ms=10)
+ax[1].set_xlim(xmin, xmax)
+ax[1].set_ylim(ymin, ymax)
+
+ax[0].set_title("Laplacian Regularzation Least-squares Method")
+ax[1].set_title("Least-squares Method")
+
+ax[0].plot(x[0, 0], x[0, 1], marker="o", color="b", ms=10)
+ax[0].plot(x[-1, 0], x[-1, 1], marker="x", color="r", ms=10)
+
+ax[1].plot(x[0, 0], x[0, 1], marker="o", color="b", ms=10)
+ax[1].plot(x[-1, 0], x[-1, 1], marker="x", color="r", ms=10)
+
 for i in range(n-2):
-    plt.plot(x[i+1, 0], x[i+1, 1], marker="o", color="g", ms=3)
-
+    ax[0].plot(x[i+1, 0], x[i+1, 1], marker="o", color="g", ms=3)
+    ax[1].plot(x[i+1, 0], x[i+1, 1], marker="o", color="g", ms=3)
 plt.show()
